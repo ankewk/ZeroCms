@@ -1,4 +1,5 @@
 <?php
+session_start();
 use Zero\Zero;
 use Zero\Request;
 

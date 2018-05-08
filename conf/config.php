@@ -1,5 +1,5 @@
 <?php
-define("BASE_URL", 'http://127.0.0.1:9123/');
+define("BASE_URL", 'http://127.0.0.1:9006/');
 define("VENDOR_ROOT", dirname(__FILE__) . '/../vendor');
 define("TEMPLATE_ROOT", dirname(__FILE__) . '/../app/View');
 
@@ -8,3 +8,10 @@ define("DBHOST", '127.0.0.1');
 define("DBUSER", 'root');
 define("DBPASS", '');
 define("DBNAME", 'zero-cms');
+
+//Project Setting
+define('USER_LOGIN_STR', '1Q2W3E');
+
+//API
+define("WECHAT_TOKEN", "???");
+
