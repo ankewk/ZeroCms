@@ -79,7 +79,10 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <div class="table-responsive">
+
+                        <button id="creted_menu" class="btn btn-default">新建菜单</button>
+
+                            <div  id="list" class="table-responsive">
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr>
@@ -108,6 +111,21 @@
                                     </tbody>
                                 </table>
                             </div>
+
+                            <!-- create menu -->
+                            <div id="create" class="form-group " style="display:none;">
+                                <label>菜单名称</label>
+                                <input class="form-control menu-name">
+                                <label>父级菜单</label>
+                                <select class="form-control menu-pid">
+                                    <option value=1>无父级菜单</option>
+                                    <option value=2>2</option>
+                                    <option value=3>3</option>
+                                </select>
+                                <button id="menu_post" class="btn btn-default">创建</button>
+                            </div>
+                            <!-- create menu end -->
+
                             <!-- /.table-responsive -->
                         </div>
                         <!-- /.panel-body -->
@@ -126,9 +144,34 @@
     <script src="app/View/public/js/plugins/dataTables/dataTables.bootstrap.js"></script>
     <script src="app/View/public/js/sb-admin-2.js"></script>
     <script>
-    $(document).ready(function() {
-        $('#dataTables-example').dataTable();
-    });
+        $(document).ready(function() {
+            $('#dataTables-example').dataTable();
+        });
+        
+        $("#creted_menu").bind("click", function(){
+            $("#list").hide();
+            $("#create").show();
+        });
+
+        $("#menu_post").bind("click", function(){
+            $.ajax({ 
+                type: 'POST',
+                url: '/menu/create', 
+                data: {
+                    "name" : $(".menu-name").val(),
+                    "pid" : $(".menu-pid").val()
+                },
+                success:function(data) {
+                    // alert(data.msg);
+                    // if(data.status == 10) {
+                    //     window.location.href = '/menu';
+                    // } else {
+                    //     location.reload() 
+                    // }
+                }
+            });
+        });
+
     </script>
 </body>
 </html>

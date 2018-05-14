@@ -11,6 +11,7 @@ define("DBNAME", 'zero-cms');
 
 //Project Setting
 define('USER_LOGIN_STR', '1Q2W3E');
+define('NOW_TIME', date('Y-m-d H:i:s'));
 
 //API
 define("WECHAT_TOKEN", "???");

@@ -8,9 +8,12 @@ $route['/news'] = ['Page', 'news'];
 $route['/menu'] = ['Page', 'menu'];
 $route['/api'] = ['Page', 'api'];
 
-//project
+//User
 $route['/userlogin'] = ['User', 'login'];
 $route['/userlogout'] = ['User', 'logout'];
+
+//Menu
+$route['/menu/create'] = ['Menu', 'creatMenu'];
 
 //API
 $route['/api/getaccesstoken'] = ['API', 'getAccessToken'];
