@@ -79,35 +79,33 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-
-                        <button id="creted_menu" class="btn btn-default">新建菜单</button>
-
+                            <button id="creted_menu" class="btn btn-default">新建菜单</button>
+                            <button id="sync_menu" class="btn btn-default">微信同步</button>
+                        </div>
+                        <hr>
+                        <div class="panel-body">
                             <div  id="list" class="table-responsive">
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr>
-                                            <th>Rendering engine</th>
-                                            <th>Browser</th>
-                                            <th>Platform(s)</th>
-                                            <th>Engine version</th>
-                                            <th>CSS grade</th>
+                                            <th>菜单名称</th>
+                                            <th>父级菜单</th>
+                                            <th>是否同步</th>
+                                            <th>操作</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    <?php foreach($lists['list'] as $k => $v) { ?>
                                         <tr class="odd gradeX">
-                                            <td>Trident</td>
-                                            <td>Internet Explorer 4.0</td>
-                                            <td>Win 95+</td>
-                                            <td class="center">4</td>
-                                            <td class="center">X</td>
+                                            <td><?php echo $v['name'];?></td>
+                                            <td><?php echo $v['pid'];?></td>
+                                            <td><?php echo $v['wechat_status'];?></td>
+                                            <td class="center">
+                                                <input type="hidden" name="menu_id" value="<?php echo $v['id'];?>">
+                                                <a class="update_menu">编辑</a> / <a class="delete_menu">删除</a>
+                                            </td>
                                         </tr>
-                                        <tr class="gradeU">
-                                            <td>Other browsers</td>
-                                            <td>All others</td>
-                                            <td>-</td>
-                                            <td class="center">-</td>
-                                            <td class="center">U</td>
-                                        </tr>
+                                    <?php } ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -118,9 +116,10 @@
                                 <input class="form-control menu-name">
                                 <label>父级菜单</label>
                                 <select class="form-control menu-pid">
-                                    <option value=1>无父级菜单</option>
-                                    <option value=2>2</option>
-                                    <option value=3>3</option>
+                                    <option value=0>无父级菜单</option>
+                                <?php foreach($lists['father_list'] as $k => $v) {?>
+                                    <option value=<?php echo $v['id'];?>><?php echo $v['name'];?></option>
+                                <?php } ?>
                                 </select>
                                 <button id="menu_post" class="btn btn-default">创建</button>
                             </div>
@@ -148,9 +147,24 @@
             $('#dataTables-example').dataTable();
         });
         
+        // create menu page
         $("#creted_menu").bind("click", function(){
+            $("#creted_menu").hide();
             $("#list").hide();
             $("#create").show();
+        });
+
+        // update menu page
+        $(".update_menu").bind("click", function(){
+            alert(1);
+            $("#creted_menu").hide();
+            $("#list").hide();
+            $("#create").show();
+        });
+
+        // delete menu page
+        $(".delete_menu").bind("click", function(){
+            alert(2);
         });
 
         $("#menu_post").bind("click", function(){
@@ -162,12 +176,12 @@
                     "pid" : $(".menu-pid").val()
                 },
                 success:function(data) {
-                    // alert(data.msg);
-                    // if(data.status == 10) {
-                    //     window.location.href = '/menu';
-                    // } else {
-                    //     location.reload() 
-                    // }
+                    alert(data.msg);
+                    if(data.status == 10) {
+                        window.location.href = '/menu';
+                    } else {
+                        location.reload() 
+                    }
                 }
             });
         });

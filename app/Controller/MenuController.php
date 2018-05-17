@@ -12,8 +12,8 @@ class MenuController extends Controller
 
     public function creatMenuZero()
     {      
-        if(empty($_POST['name']) || empty($_POST['pid']))
-            $this->statusPrint(101, '名称和父级菜单必选！');
+        if(empty($_POST['name']))
+            $this->statusPrint(101, '名称必选！');
         $menuData = new \StdClass();
         $menuData->name = $_POST['name'];
         $menuData->pid = $_POST['pid'];
@@ -24,4 +24,13 @@ class MenuController extends Controller
         $this->dataPrint($menuCreateStatus);
     }
 
+    public function updateMenuZero()
+    {
+        echo 'update menu';exit;
+    }
+
+    public function deleteMenuZero()
+    {
+        echo 'delete menu';exit;
+    }
 }

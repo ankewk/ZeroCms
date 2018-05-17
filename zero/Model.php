@@ -16,12 +16,23 @@ class Model
 		if(empty($data))
 			return FALSE;
 		$insertData = $this->dataFormat($data);
-		$sql = "INSERT INTO `{$table}` ({$insertData->feilds}) VALUES ({$insertData->values});";
+		$sql = "INSERT INTO {$table} ({$insertData->feilds}) VALUES ({$insertData->values});";
 		$query = $this->db->prepare($sql);
         $rs = $query->execute();
-		if($rs)
+		if(!$rs)
 			return FALSE;
-        return $row;
+        return TRUE;
+	}
+
+	public function searchTable($table, $feilds, $where=1)
+	{
+		$sql = "SELECT  {$feilds} FROM {$table} WHERE {$where}";
+		$query = $this->db->prepare($sql);
+        $query->execute();
+        $row = $query->fetchAll(\PDO::FETCH_ASSOC);
+		if($row)
+			return $row;
+		return [];
 	}
 
 	private function dataFormat($data)

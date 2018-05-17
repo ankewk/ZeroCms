@@ -1,6 +1,7 @@
 <?php
 use Zero\Controller;
 use Model\CommonModel;
+use Model\MenuModel;
 
 class PageController extends Controller
 {
@@ -22,7 +23,9 @@ class PageController extends Controller
 
     public function menuZero()
     {
-        $this->render('Menu', []);
+        $menuModel = new MenuModel();
+        $menuList = $menuModel->listMenu();
+        $this->render('Menu', ['lists' => $menuList]);
     }
 
     public function UserZero()

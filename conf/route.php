@@ -14,6 +14,8 @@ $route['/userlogout'] = ['User', 'logout'];
 
 //Menu
 $route['/menu/create'] = ['Menu', 'creatMenu'];
+$route['/menu/update'] = ['Menu', 'updateMenu'];
+$route['/menu/delete'] = ['Menu', 'deleteMenu'];
 
 //API
 $route['/api/getaccesstoken'] = ['API', 'getAccessToken'];
