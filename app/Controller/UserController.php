@@ -27,4 +27,5 @@ class UserController extends Controller
         $this->userModel->logoutUser();
         $this->redirect('/login');
     }
+
 }

@@ -6,9 +6,12 @@ use Zero\Model;
 
 class UserModel extends Model
 {
+    const USER_TABLE = '`zero_user`';
+
     public function __construct() 
     {
         parent::__construct();
+        $this->table = self::USER_TABLE;
     }
 
     public function loginUser($user)
@@ -31,4 +34,13 @@ class UserModel extends Model
             return true;
         return false;
     }
+
+    public function listUser()
+    {
+        $this->feild = "`id`, `openid`, `nickname`, `sex`, `headimgurl`, `subscribe` ";
+        $this->where = 1;
+        $userList = $this->R();
+        return $userList;
+    }
+
 }

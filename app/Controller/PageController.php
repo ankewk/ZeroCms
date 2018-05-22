@@ -2,6 +2,7 @@
 use Zero\Controller;
 use Model\CommonModel;
 use Model\MenuModel;
+use Model\UserModel;
 
 class PageController extends Controller
 {
@@ -30,7 +31,9 @@ class PageController extends Controller
 
     public function UserZero()
     {
-        $this->render('User', []);
+        $userModel = new UserModel();
+        $userList = $userModel->listUser();
+        $this->render('User', ['lists' => $userList]);
     }
 
     public function newsZero()
