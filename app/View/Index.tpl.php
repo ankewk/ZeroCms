@@ -115,6 +115,8 @@
                                     </div>
                                 </li>
                                 <li class="timeline-inverted">
+                                    <div class="timeline-badge danger"><i class="fa fa-bomb"></i>
+                                    </div>
                                     <div class="timeline-panel">
                                         <div class="timeline-heading">
                                             <h4 class="timeline-title"> 未完待续 </h4>

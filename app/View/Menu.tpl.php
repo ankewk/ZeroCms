@@ -79,8 +79,9 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <button id="creted_menu" class="btn btn-default">新建菜单</button>
-                            <button id="sync_menu" class="btn btn-default">微信同步</button>
+                            <button id="creted_menu" class="btn btn-info">新建菜单</button>
+                            <button id="list_menu" class="btn btn-info" style="display:none;">菜单列表</button>
+                            <button id="sync_menu" class="btn btn-warning">微信同步</button>
                         </div>
                         <hr>
                         <div class="panel-body">
@@ -101,8 +102,8 @@
                                             <td><?php echo $v['pid'];?></td>
                                             <td><?php echo $v['wechat_status'];?></td>
                                             <td class="center">
-                                                <input type="hidden" name="menu_id" value="<?php echo $v['id'];?>">
-                                                <a class="update_menu">编辑</a> / <a class="delete_menu">删除</a>
+                                                <button class="update_menu btn btn-primary" value="<?php echo $v['id'];?>">编辑</button> 
+                                                <button class="delete_menu btn btn-danger" value="<?php echo $v['id'];?>">删除</button>
                                             </td>
                                         </tr>
                                     <?php } ?>
@@ -112,6 +113,7 @@
 
                             <!-- create menu -->
                             <div id="create" class="form-group " style="display:none;">
+                                <p>新建菜单</p>
                                 <label>菜单名称</label>
                                 <input class="form-control menu-name">
                                 <label>父级菜单</label>
@@ -121,7 +123,23 @@
                                     <option value=<?php echo $v['id'];?>><?php echo $v['name'];?></option>
                                 <?php } ?>
                                 </select>
-                                <button id="menu_post" class="btn btn-default">创建</button>
+                                <button id="menu_post" class="btn btn-primary">创建</button>
+                            </div>
+                            <!-- create menu end -->
+
+                            <!-- create menu -->
+                            <div id="update" class="form-group " style="display:none;">
+                                <p>编辑菜单</p>
+                                <label>菜单名称</label>
+                                <input class="form-control menu-update-name">
+                                <label>父级菜单</label>
+                                <select class="form-control menu-pid">
+                                    <option value=0>无父级菜单</option>
+                                <?php foreach($lists['father_list'] as $k => $v) {?>
+                                    <option value=<?php echo $v['id'];?>><?php echo $v['name'];?></option>
+                                <?php } ?>
+                                </select>
+                                <button id="menu_update_post" class="btn btn-primary">修改</button>
                             </div>
                             <!-- create menu end -->
 
@@ -147,32 +165,80 @@
             $('#dataTables-example').dataTable();
         });
         
+        // list menu page
+        $("#list_menu").bind("click", function(){
+            $("#creted_menu").show();
+            $("#list").show();
+            $("#list_menu").hide();
+            $("#create").hide();
+        });
+
         // create menu page
         $("#creted_menu").bind("click", function(){
             $("#creted_menu").hide();
             $("#list").hide();
+            $("#update").hide();
+            $("#list_menu").show();
             $("#create").show();
         });
 
         // update menu page
         $(".update_menu").bind("click", function(){
-            alert(1);
             $("#creted_menu").hide();
+            $("#list_menu").show();
             $("#list").hide();
-            $("#create").show();
+            $("#create").hide();
+            $("#update").show();
+            $("#menu_update_post").attr("value",$(this).val());
         });
 
         // delete menu page
         $(".delete_menu").bind("click", function(){
-            alert(2);
+            $.ajax({ 
+                type: 'POST',
+                url: '/menu/delete', 
+                data: {
+                    "id" : $(this).val()
+                },
+                success:function(data) {
+                    alert(data.msg);
+                    if(data.status == 10) {
+                        window.location.href = '/menu';
+                    } else {
+                        location.reload() 
+                    }
+                }
+            });
         });
 
+        // create menu post
         $("#menu_post").bind("click", function(){
             $.ajax({ 
                 type: 'POST',
                 url: '/menu/create', 
                 data: {
                     "name" : $(".menu-name").val(),
+                    "pid" : $(".menu-pid").val()
+                },
+                success:function(data) {
+                    alert(data.msg);
+                    if(data.status == 10) {
+                        window.location.href = '/menu';
+                    } else {
+                        location.reload() 
+                    }
+                }
+            });
+        });
+
+        // update menu post
+        $("#menu_update_post").bind("click", function(){
+            $.ajax({ 
+                type: 'POST',
+                url: '/menu/update', 
+                data: {
+                    "id" : $(this).val(),
+                    "name" : $(".menu-update-name").val(),
                     "pid" : $(".menu-pid").val()
                 },
                 success:function(data) {

@@ -7,18 +7,27 @@ use Zero\Model;
 class MenuModel extends Model
 {
     const MENU_TABLE = '`zero_menu`';
+
     public function __construct() 
     {
         parent::__construct();
+        $this->table = self::MENU_TABLE;
     }
 
-    public function createMenu($data)
+    public function createMenu($value)
     {
-        $menuData = $this->validate($data);
-        $rs = $this->insertTable(self::MENU_TABLE, $menuData);  
-        if($rs)
-            return ['status' => 10, 'msg' => '菜单创建成功！'];
-        return ['status' => 100, 'msg' => '菜单创建失败！'];
+        $this->feild = '`name`, `pid`, `created`, `updated`';
+        $this->value = $value;
+        $lastId =  $this->C();
+        return $lastId;
+    }
+
+    public function updateMenu($upval, $where)
+    {
+        $this->upval = $upval;
+        $this->where = $where;
+        $rs =  $this->U();
+        return $rs;
     }
     
     public function listMenu()
@@ -29,8 +38,10 @@ class MenuModel extends Model
         return $list;
     }
 
-    private function validate($obj)
+    public function deleteMenu($id)
     {
-        return (array )$obj;
+        $this->id = $id;
+        $rs = $this->D();
+        return $rs;
     }
 }
