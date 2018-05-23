@@ -7,6 +7,7 @@ $route['/user'] = ['Page', 'user'];
 $route['/news'] = ['Page', 'news'];
 $route['/menu'] = ['Page', 'menu'];
 $route['/api'] = ['Page', 'api'];
+$route['/qrcode'] = ['Page', 'qrcode'];
 
 //User
 $route['/userlogin'] = ['User', 'login'];

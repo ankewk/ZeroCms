@@ -45,4 +45,9 @@ class PageController extends Controller
     {
         $this->render('Api', []);
     }
+
+    public function qrcodeZero()
+    {
+        $this->render('Qrcode', []);
+    }
 }

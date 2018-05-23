@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>消息管理</title>
+    <title>二维码管理</title>
     <link href="app/View/public/css/bootstrap.min.css" rel="stylesheet">
     <link href="app/View/public/css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet">
     <link href="app/View/public/css/plugins/dataTables.bootstrap.css" rel="stylesheet">
@@ -20,7 +20,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">消息管理</h1>
+                    <h1 class="page-header">二维码管理</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -29,13 +29,44 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <button class="btn btn-primary">自动回复</button>
-                            <button class="btn btn-primary">模板消息</button>
-                            <button class="btn btn-primary">客服消息</button>
+                            <button id="creted_menu" class="btn btn-info">授权 API</button>
+                            <button id="creted_menu" class="btn btn-info">JSSDK API</button>
+                            <button id="creted_menu" class="btn btn-info">模板消息 API</button>
                         </div>
                         <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                    <thead>
+                                        <tr>
+                                            <th>Rendering engine</th>
+                                            <th>Browser</th>
+                                            <th>Platform(s)</th>
+                                            <th>Engine version</th>
+                                            <th>CSS grade</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="odd gradeX">
+                                            <td>Trident</td>
+                                            <td>Internet Explorer 4.0</td>
+                                            <td>Win 95+</td>
+                                            <td class="center">4</td>
+                                            <td class="center">X</td>
+                                        </tr>
+                                        <tr class="gradeU">
+                                            <td>Other browsers</td>
+                                            <td>All others</td>
+                                            <td>-</td>
+                                            <td class="center">-</td>
+                                            <td class="center">U</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.table-responsive -->
+                        </div>
                         <!-- /.panel-body -->
-                        实打实的
                     </div>
                     <!-- /.panel -->
                 </div>
