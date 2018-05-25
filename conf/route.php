@@ -20,3 +20,4 @@ $route['/menu/delete'] = ['Menu', 'deleteMenu'];
 
 //API
 $route['/api/getaccesstoken'] = ['API', 'getAccessToken'];
+$route['/api/jsSdk'] = ['API', 'jsSdk'];

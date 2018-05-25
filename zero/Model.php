@@ -66,15 +66,4 @@ class Model
 			return TRUE;
 		return FALSE;
 	}
-	
-	public function searchTable($table, $feilds, $where=1)
-	{
-		$sql = "SELECT  {$feilds} FROM {$table} WHERE {$where}";
-		$query = $this->db->prepare($sql);
-        $query->execute();
-        $row = $query->fetchAll(\PDO::FETCH_ASSOC);
-		if($row)
-			return $row;
-		return [];
-	}
 }

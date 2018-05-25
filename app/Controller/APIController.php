@@ -4,7 +4,6 @@ use Model\CommonModel;
 
 class APIController extends Controller
 {
-
     public function __construct() 
     {
         parent::__construct();
@@ -12,6 +11,19 @@ class APIController extends Controller
 
     public function getAccessTokenZero()
     {
+        $param = [
+            'name' => 'string',
+            'age' => 'string'
+        ];
+        $request = $this->Request();
+        $request->validation($param);
+        $name = $request->getParam('name');
+        $age = $request->getParam('age');
         echo "获取accesstoken";exit;
+    }
+
+    public function jsSdk()
+    {
+        echo "获取jssdk";exit;
     }
 }
