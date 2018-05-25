@@ -28,12 +28,12 @@ class Request
 		$validate = new Validate();
 		foreach($rules as $k=>$v) {
 			if(!isset($this->param[$k]))
-				die('param is not exits');
+				die(json_encode(['status' => 101, 'msg' => '参数不能为空!'], 1));
 			$validate->feild = $this->param[$k];
 			switch($v) {
 				case 'string':
 					if(!$validate->STRING())
-						die("{$k} is not String");
+						die(json_encode(['status' => 102, 'msg'=> "参数{$k}不是字符串"], 1));
 					break;
 			}
 		}

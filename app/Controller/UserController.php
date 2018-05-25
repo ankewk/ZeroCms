@@ -14,10 +14,16 @@ class UserController extends Controller
     }
 
     public function loginZero()
-    {      
+    {   
+        $param = [
+            'name' => 'string',
+            'password' => 'string'
+        ];
+        $request = $this->Request();
+        $request->validation($param);  
         $user = new \StdClass();
-        $user->name = $_POST['name'];
-        $user->password = $_POST['password'];
+        $user->name = $request->getParam('name');
+        $user->password = $request->getParam('password');
         $userLoginStatus = $this->userModel->loginUser($user);
         $this->dataPrint($userLoginStatus);
     }

@@ -15,10 +15,16 @@ class MenuController extends Controller
 
     public function creatMenuZero()
     {      
-        if(empty($_POST['name']))
-            $this->statusPrint(101, '名称必填！');
+        $param = [
+            'name' => 'string',
+            'pid' => 'string'
+        ];
+        $request = $this->Request();
+        $request->validation($param);
+        $name = $request->getParam('name');
+        $pid = $request->getParam('pid');
         $now = NOW_TIME;
-        $menuVal = "'{$_POST['name']}', {$_POST['pid']}, '{$now}', '{$now}'";
+        $menuVal = "'{$name}', {$pid}, '{$now}', '{$now}'";
         $lastId = $this->menuModel->createMenu($menuVal);
         if($lastId)
             $this->statusPrint(10, '菜单创建成功！');
@@ -27,9 +33,16 @@ class MenuController extends Controller
 
     public function updateMenuZero()
     {
-        $menuId = isset($_POST['id']) ? $_POST['id'] : 0;
-        $name = isset($_POST['name']) ? $_POST['name'] : '';
-        $pid = isset($_POST['pid']) ? $_POST['pid'] : 0;
+        $param = [
+            'id' => 'string',
+            'name' => 'string',
+            'pid' => 'string'
+        ];
+        $request = $this->Request();
+        $request->validation($param);
+        $menuId = $request->getParam('id');
+        $name = $request->getParam('name');
+        $pid = $request->getParam('pid');
         $upval = "`name`='{$name}', `pid`={$pid}";
         $where  = "`id`={$menuId}";
         $rs =  $this->menuModel->updateMenu($upval, $where);
@@ -40,7 +53,12 @@ class MenuController extends Controller
 
     public function deleteMenuZero()
     {
-        $menuId = isset($_POST['id']) ? $_POST['id'] : 0;
+        $param = [
+            'id' => 'string'
+        ];
+        $request = $this->Request();
+        $request->validation($param);
+        $menuId = $request->getParam('id');
         $rs = $this->menuModel->deleteMenu($menuId);
         if($rs)
             $this->statusPrint(10, '菜单删除成功！');
