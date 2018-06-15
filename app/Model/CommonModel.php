@@ -10,4 +10,6 @@ class CommonModel extends Model
     {
         parent::__construct();
     }
+
+    
 }

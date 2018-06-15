@@ -13,6 +13,7 @@ define("DBNAME", 'zero-cms');
 define('USER_LOGIN_STR', '1Q2W3E');
 define('NOW_TIME', date('Y-m-d H:i:s'));
 define('USER_MODE', 'SESSION'); //[SESSION, COOKIE]
+define('USER_EXPIRE', '3600'); //User Status Time 1h
 
 //API
 define("WECHAT_TOKEN", "???");

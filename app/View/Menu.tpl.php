@@ -110,11 +110,7 @@
     <script src="app/View/public/js/plugins/dataTables/jquery.dataTables.js"></script>
     <script src="app/View/public/js/plugins/dataTables/dataTables.bootstrap.js"></script>
     <script src="app/View/public/js/sb-admin-2.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#dataTables-example').dataTable();
-        });
-        
+    <script> 
         // list menu page
         $("#list_menu").bind("click", function(){
             $("#creted_menu").show();

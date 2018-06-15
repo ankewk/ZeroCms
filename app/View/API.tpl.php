@@ -95,10 +95,8 @@
     <script src="js/sb-admin-2.js"></script>
 
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
-    <script>
-    $(document).ready(function() {
-        $('#dataTables-example').dataTable();
-    });
+    <script>    
+            
     </script>
 
 </body>
