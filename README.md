@@ -1,36 +1,36 @@
 # ZeroCms
-基于ZeroPHP开发的微信管理后台
+WeChat management background based on ZeroPHP development
 
 ---
 
-## 功能简介
+## A brief introduction of function
 ```
-1.菜单管理
- - 二级菜单本地设置
- - 微信发布菜单
-2.用户管理
- - 拉取微信用户
- - 分组用户消息发送
- - 用户标签分组
-3.消息管理
- - 自动回复设置
- - 回复用户消息
-4.API管理
- - 授权API
+1.Menu management
+ - Local setting of two level menus
+ - WeChat release menu
+2.User management
+ - Pull WeChat users
+ - Packet user message sending
+ - User label packet
+3.Message management
+ - Automatic reply setting
+ - Reply to the user message
+4.API management
+ - Authorization API
  - JSSDK API
- - 模板消息 API
- - 二维码 API
-5.二维码管理
- - 生成二维码
- - 设置扫描事件
+ - Template message API
+ - Qrcode API
+5.Qrcode management
+ - Generating qrcode
+ - Setting the scan event
 ```
 
 ---
 
-## 系统简介
+## A brief introduction to the system
 ```
-1.基于ZeroPHP框架开发的MVC项目。
-2.提供微信公众号管理后台。
-3.共享第三方开发应用的微信API。
-4.本项目开源使用。
+1.The MVC project based on the ZeroPHP framework.
+2.Provide the WeChat public number management backstage.
+3.Share the third party development and application of WeChat API.
+4.The project is open source.
 ```
