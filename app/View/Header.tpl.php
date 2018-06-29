@@ -14,12 +14,12 @@
                     <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-user">
-                    <li><a href="https://ankewk.github.io/"><i class="fa fa-user fa-fw"></i>Anke博客</a>
+                    <li><a href="https://ankewk.github.io/"><i class="fa fa-user fa-fw"></i>Anke Blog</a>
                     </li>
-                    <li><a href="https://github.com/ankewk/ZeroPHP"><i class="fa fa-gear fa-fw"></i>ZeroPHP框架</a>
+                    <li><a href="https://github.com/ankewk/ZeroPHP"><i class="fa fa-gear fa-fw"></i>ZeroPHP Framework</a>
                     </li>
                     <li class="divider"></li>
-                    <li><a href="/userlogout"><i class="fa fa-sign-out fa-fw"></i>退出登陆</a>
+                    <li><a href="/userlogout"><i class="fa fa-sign-out fa-fw"></i>Exit</a>
                     </li>
                 </ul>
             </li>
@@ -29,19 +29,19 @@
             <div class="sidebar-nav navbar-collapse">
                 <ul class="nav" id="side-menu">
                     <li>
-                        <a href="/menu"><i class="fa fa-bar-chart-o fa-fw"></i> 菜单管理 </a>
+                        <a href="/menu"><i class="fa fa-bar-chart-o fa-fw"></i> Menu </a>
                     </li>
                     <li>
-                        <a href="/user"><i class="fa fa-table fa-fw"></i> 用户管理 </a>
+                        <a href="/user"><i class="fa fa-table fa-fw"></i> User </a>
                     </li>
                     <li>
-                        <a href="/news"><i class="fa fa-edit fa-fw"></i> 消息管理 </a>
+                        <a href="/news"><i class="fa fa-edit fa-fw"></i> Message </a>
                     </li>
                     <li>
-                        <a href="/api"><i class="fa fa-wrench fa-fw"></i> API管理 </a>
+                        <a href="/api"><i class="fa fa-wrench fa-fw"></i> API </a>
                     </li>
                     <li>
-                        <a href="/qrcode"><i class="fa fa-wrench fa-fw"></i> 二维码管理 </a>
+                        <a href="/qrcode"><i class="fa fa-wrench fa-fw"></i> Qrcode </a>
                     </li>
                 </ul>
             </div>

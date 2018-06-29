@@ -17,53 +17,7 @@
 
 <body>
     <div id="wrapper">
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="">ZeroCms</a>
-            </div>
-            <ul class="nav navbar-top-links navbar-right">
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-user">
-                        <li><a href="https://ankewk.github.io/"><i class="fa fa-user fa-fw"></i>Anke博客</a>
-                        </li>
-                        <li><a href="https://github.com/ankewk/ZeroPHP"><i class="fa fa-gear fa-fw"></i>ZeroPHP框架</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li><a href="/userlogout"><i class="fa fa-sign-out fa-fw"></i>退出登陆</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-
-            <div class="navbar-default sidebar" role="navigation">
-                <div class="sidebar-nav navbar-collapse">
-                    <ul class="nav" id="side-menu">
-                        <li>
-                            <a href="/menu"><i class="fa fa-bar-chart-o fa-fw"></i> 菜单管理 </a>
-                        </li>
-                        <li>
-                            <a href="/user"><i class="fa fa-table fa-fw"></i> 用户管理 </a>
-                        </li>
-                        <li>
-                            <a href="/news"><i class="fa fa-edit fa-fw"></i> 消息管理 </a>
-                        </li>
-                        <li>
-                            <a href="/api"><i class="fa fa-wrench fa-fw"></i> 第三方API </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
+    <?php include_once "Header.tpl.php";?>
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
@@ -74,7 +28,7 @@
                 <div class="col-lg-8">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <i class="fa fa-clock-o fa-fw"></i> 那些关于ZeroCms的事
+                            <i class="fa fa-clock-o fa-fw"></i> About ZeroCms
                         </div>
                         <div class="panel-body">
                             <ul class="timeline">
@@ -86,7 +40,7 @@
                                             <h4 class="timeline-title">ZeroPHP</h4>
                                         </div>
                                         <div class="timeline-body">
-                                            <p>简而不失其华，为轻而生的PHP框架，快速搭建PHP应用的框架。</p>
+                                            <p>A simple framework to quickly build a framework for PHP applications.</p>
                                         </div>
                                     </div>
                                 </li>
@@ -98,7 +52,7 @@
                                             <h4 class="timeline-title">ZeroCms</h4>
                                         </div>
                                         <div class="timeline-body">
-                                            <p>基于ZeroPHP框架开发的微信CMS</p>
+                                            <p>A wechat cms by ZeroPHP framework.</p>
                                         </div>
                                     </div>
                                 </li>
@@ -110,7 +64,7 @@
                                             <h4 class="timeline-title">Anke Wang</h4>
                                         </div>
                                         <div class="timeline-body">
-                                            <p>4年 IT从业经验，擅长web方面开发运维。精通PHP方面开发。ZeroPHP框架的开发者。</p>
+                                            <p>4 years IT experience, good at Web aspect development operation and maintenance. Well versed in PHP development. The developer of the ZeroPHP framework.</p>
                                         </div>
                                     </div>
                                 </li>
@@ -119,10 +73,10 @@
                                     </div>
                                     <div class="timeline-panel">
                                         <div class="timeline-heading">
-                                            <h4 class="timeline-title"> 未完待续 </h4>
+                                            <h4 class="timeline-title"> About the future </h4>
                                         </div>
                                         <div class="timeline-body">
-                                            <p>开源之路漫长，期待那个志同道合的你一起并肩前行。</p>
+                                            <p>The long way to open source is waiting for you to go forward together.</p>
                                         </div>
                                     </div>
                                 </li>
@@ -143,10 +97,7 @@
             <!-- /.row -->
         </div>
         <!-- /#page-wrapper -->
-
     </div>
-    <!-- /#wrapper -->
-    
     <script src="app/View/public/js/jquery-1.11.0.js"></script>
     <script src="app/View/public/js/bootstrap.min.js"></script>
     <script src="app/View/public/js/plugins/metisMenu/metisMenu.min.js"></script>
@@ -154,7 +105,5 @@
     <script src="app/View/public/js/plugins/morris/morris.min.js"></script>
     <script src="app/View/public/js/plugins/morris/morris-data.js"></script>
     <script src="app/View/public/js/sb-admin-2.js"></script>
-
 </body>
-
 </html>

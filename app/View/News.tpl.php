@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>消息管理</title>
+    <title>Message</title>
     <link href="app/View/public/css/bootstrap.min.css" rel="stylesheet">
     <link href="app/View/public/css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet">
     <link href="app/View/public/css/plugins/dataTables.bootstrap.css" rel="stylesheet">
@@ -20,7 +20,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">消息管理</h1>
+                    <h1 class="page-header">Message</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>

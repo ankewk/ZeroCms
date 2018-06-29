@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>二维码管理</title>
+    <title>Qrcode</title>
     <link href="app/View/public/css/bootstrap.min.css" rel="stylesheet">
     <link href="app/View/public/css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet">
     <link href="app/View/public/css/plugins/dataTables.bootstrap.css" rel="stylesheet">
@@ -20,7 +20,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">二维码管理</h1>
+                    <h1 class="page-header">Qrcode</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -29,9 +29,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <button id="creted_menu" class="btn btn-info">授权 API</button>
-                            <button id="creted_menu" class="btn btn-info">JSSDK API</button>
-                            <button id="creted_menu" class="btn btn-info">模板消息 API</button>
+                            
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
