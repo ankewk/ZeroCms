@@ -3,3 +3,4 @@
 .vagrant
 /puppet
 Vagrantfile
+/conf/config.php
