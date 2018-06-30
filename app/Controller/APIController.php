@@ -31,6 +31,8 @@ class APIController extends Controller
     public function wechatZero()
     {
         $api = new ApiModel();
-        $api->wechat();
+        $response = $api->wechat();
+        $r = $this->Response($response);
+        $r->Send();
     }
 }

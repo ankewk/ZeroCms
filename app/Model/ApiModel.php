@@ -28,13 +28,8 @@ class ApiModel extends Model
                 'file' => __DIR__.'/wechat.log',
             ],
         ];
-
         $app = Factory::officialAccount($config);
-
         $response = $app->server->serve();
-
-        // 将响应输出
-        $r = $response->send();
-        echo $r;exit;
+        return $response;
     }
 }
