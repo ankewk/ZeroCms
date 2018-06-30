@@ -16,5 +16,6 @@ define('USER_MODE', 'SESSION'); //[SESSION, COOKIE]
 define('USER_EXPIRE', '3600'); //User Status Time 1h
 
 //API
+define("WECHAT_APPID", "???");
 define("WECHAT_TOKEN", "???");
 
