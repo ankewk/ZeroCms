@@ -25,7 +25,7 @@ class ApiModel extends Model
 
             'log' => [
                 'level' => 'debug',
-                'file' => __DIR__.'/wechat.log',
+                'file' => '/var/log/nginx/wechat.log',
             ],
         ];
         $app = Factory::officialAccount($config);

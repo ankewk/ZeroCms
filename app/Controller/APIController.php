@@ -32,6 +32,6 @@ class APIController extends Controller
     {
         $api = new ApiModel();
         $r = $api->wechat();
-        $r->send();
+        return $r;
     }
 }
