@@ -2,6 +2,7 @@
 use Zero\Controller;
 use Model\CommonModel;
 use Model\AnkeWechatModel;
+use Zero\Response;
 
 class APIController extends Controller
 {
@@ -45,8 +46,10 @@ class APIController extends Controller
         $tmp = [$timestamp,$nonce,WECHAT_TOKEN];
         $api = new AnkeWechatModel();
         $checkRes = $api->wechat($tmp,$signature);
-        if($checkRes)
-            return $echostr;
-        return;
+        $response = new Response($echostr);
+        if($checkRes){
+            $response->send();
+        }
+        $this->statusPrint(1000,'wechat check failed!');
     }
 }
