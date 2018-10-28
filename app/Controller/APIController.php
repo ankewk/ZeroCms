@@ -1,7 +1,7 @@
 <?php
 use Zero\Controller;
 use Model\CommonModel;
-use Model\ApiModel;
+use Model\AnkeWechatModel;
 
 class APIController extends Controller
 {
@@ -30,8 +30,23 @@ class APIController extends Controller
 
     public function wechatZero()
     {
-        $api = new ApiModel();
-        $r = $api->wechat();
-        return $r;
+        $param = [
+            'nonce' => 'string',
+            'echostr' => 'string',
+            'timestamp' => 'string',
+            'signature' => 'string'
+        ];
+        $request = $this->Request();
+        $request->validation($param);
+        $nonce = $request->getParam('nonce');
+        $echostr = $request->getParam('echostr');
+        $timestamp = $request->getParam('timestamp');
+        $signature = $request->getParam('signature');
+        $tmp = [$timestamp,$nonce,WECHAT_TOKEN];
+        $api = new AnkeWechatModel($tmp,$signature);
+        $checkRes = $api->wechat();
+        if(checkRes)
+            return $echostr;
+        return;
     }
 }

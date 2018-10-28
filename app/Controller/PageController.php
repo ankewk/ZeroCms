@@ -60,7 +60,7 @@ class PageController extends Controller
     {
         $userModel = new UserModel();
         if(!$userModel->isUserLogin()) {
-            $this->redirect('/login');
+            $this->redirect('/Login');
         }
     }
 }
