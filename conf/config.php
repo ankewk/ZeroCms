@@ -1,7 +1,7 @@
 <?php
 define("BASE_URL", 'http://127.0.0.1:9006/');
-define("VENDOR_ROOT", dirname(__FILE__) . '/../vendor');
-define("TEMPLATE_ROOT", dirname(__FILE__) . '/../app/View');
+define("VENDOR_ROOT", dirname(dirname(__FILE__)) . '/vendor');
+define("TEMPLATE_ROOT", dirname(dirname(__FILE__)) . '/app/View');
 
 //Database config info
 define("DBHOST", '127.0.0.1');

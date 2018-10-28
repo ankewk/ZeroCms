@@ -19,7 +19,7 @@ class PageController extends Controller
 
     public function loginZero()
     {
-        $this->render('login', []);
+        $this->render('Login', []);
     }
 
     public function menuZero()
