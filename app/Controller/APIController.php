@@ -43,8 +43,8 @@ class APIController extends Controller
         $timestamp = $request->getParam('timestamp');
         $signature = $request->getParam('signature');
         $tmp = [$timestamp,$nonce,WECHAT_TOKEN];
-        $api = new AnkeWechatModel($tmp,$signature);
-        $checkRes = $api->wechat();
+        $api = new AnkeWechatModel();
+        $checkRes = $api->wechat($tmp,$signature);
         if(checkRes)
             return $echostr;
         return;
