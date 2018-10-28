@@ -45,7 +45,7 @@ class APIController extends Controller
         $tmp = [$timestamp,$nonce,WECHAT_TOKEN];
         $api = new AnkeWechatModel();
         $checkRes = $api->wechat($tmp,$signature);
-        if(checkRes)
+        if($checkRes)
             return $echostr;
         return;
     }
