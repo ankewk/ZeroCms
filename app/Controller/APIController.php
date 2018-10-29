@@ -1,7 +1,7 @@
 <?php
 use Zero\Controller;
 use Model\CommonModel;
-use Model\AnkeWechatModel;
+use Model\ApiModel;
 use Zero\Response;
 
 class APIController extends Controller
@@ -13,15 +13,9 @@ class APIController extends Controller
 
     public function getAccessTokenZero()
     {
-        $param = [
-            'name' => 'string',
-            'age' => 'string'
-        ];
-        $request = $this->Request();
-        $request->validation($param);
-        $name = $request->getParam('name');
-        $age = $request->getParam('age');
-        echo "获取accesstoken";exit;
+        $api = new ApiModel();
+        $accessToken = $api->getAccessToken();
+        $this->statusPrint(200,$accessToken);
     }
 
     public function jsSdk()
@@ -44,7 +38,7 @@ class APIController extends Controller
         $timestamp = $request->getParam('timestamp');
         $signature = $request->getParam('signature');
         $tmp = [$timestamp,$nonce,WECHAT_TOKEN];
-        $api = new AnkeWechatModel();
+        $api = new ApiModel();
         $checkRes = $api->wechat($tmp,$signature);
         $response = new Response($echostr);
         if($checkRes){

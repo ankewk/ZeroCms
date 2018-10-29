@@ -3,33 +3,27 @@
 namespace Model;
 
 use Zero\Model;
-use EasyWeChat\Factory;
+use Lib\ZeroWechat;
 
 class ApiModel extends Model
 {
     const MENU_TABLE = '`zero_api`';
+    public $zeroWechat;
     
     public function __construct() 
     {
         parent::__construct();
         $this->table = self::MENU_TABLE;
+        $this->zeroWechat = new ZeroWechat();
     }
 
-    public function wechat()
+    public function wechat($tmp,$signature)
     {
-        $config = [
-            'app_id' => WECHAT_APPID,
-            'secret' => WECHAT_TOKEN,
+        return $this->zeroWechat->wechat();
+    }
 
-            'response_type' => 'array',
-
-            'log' => [
-                'level' => 'debug',
-                'file' => '/var/log/nginx/wechat.log',
-            ],
-        ];
-        $app = Factory::officialAccount($config);
-        $response = $app->server->serve();
-        return $response;
+    public function getAccessToken()
+    {
+        return $this->zeroWechat->getAccessToken();
     }
 }
