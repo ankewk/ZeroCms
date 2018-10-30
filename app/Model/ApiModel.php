@@ -19,7 +19,7 @@ class ApiModel extends Model
 
     public function wechat($tmp,$signature)
     {
-        return $this->zeroWechat->wechat();
+        return $this->zeroWechat->wechat($tmp,$signature);
     }
 
     public function getAccessToken()

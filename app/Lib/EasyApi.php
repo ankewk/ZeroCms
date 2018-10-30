@@ -3,59 +3,108 @@ namespace Lib;
 
 class EasyApi
 {
-    public static $url;
-    public static $param;
-    public static $method;
-    public static $curl;
+    public $initParam;
+    private $curl;
+    public static $response;
 
     public function __construct()
     {
         
     }
 
-    public static function init($url,$param,$method)
+    public function init($initParam)
     {
-        self::$url = $url;
-        self::$param = $param;
-        self::$method = $method;
+        $this->initParam = $initParam;
+        return $this;
     }
-    private static function curlInit()
+
+    public function checkDomain()
     {
-        self::$curl = curl_init();
-        curl_setopt(self::$curl, CURLOPT_URL, self::$url);
-        curl_setopt(self::$curl, CURLOPT_HEADER, 1);
-        curl_setopt(self::$curl, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt(self::$curl, CURLOPT_REFERER, '223.73.212.174');
-        if(self::$method == 'post')
-            curl_setopt(self::$curl, CURLOPT_POST, 1);
+        $urlArr = parse_url($this->initParam['url']);
+        $pingParam = (strcasecmp(PHP_OS, 'Linux') === 0) ? '-c' : '-n';
+        $pingShell = "ping {$pingParam} 1 {$urlArr['host']}";
+        exec($pingShell, $pingOut, $status);
+        if($status !== 0 && empty($pingOut))
+            self::$response = false;
+        self::$response = true;
+    }
+
+    public function signature()
+    {
+        sort($this->initParam, SORT_STRING);
+        $signature = implode($this->initParam);
+        self::$response = sha1($signature);
+    }
+
+    public function xml()
+    {
+        $xml = "<xml>";
+        foreach ($this->initParam as $key=>$val)
+        {
+            if (is_numeric($val)){
+                $xml.="<".$key.">".$val."</".$key.">";
+            }else{
+                 $xml.="<".$key."><![CDATA[".$val."]]></".$key.">";
+            }
+        }
+        $xml.="</xml>";
+        $this->initParam = $xml;
+        return $this;
+    }
+
+    public function json()
+    {
+        $this->initParam = json_encode($this->initParam);
+        return $this;
+    }
+
+    public function post($formart = 'json')
+    {
+        $this->curlInit();
+        curl_setopt($this->curl, CURLOPT_POSTFIELDS, $this->initParam['param']);
+        $response = curl_exec($this->curl);
+        $this->curlClose();
+        self::$response = json_decode($response);
+        if($formart == 'xml')
+            self::$response = $this->xmlToArray($response);
+    }
+
+    public function get($formart = 'json')
+    {
+        $this->curlInit();
+        $response = curl_exec($this->curl);
+        $this->curlClose();
+        self::$response = json_decode($response);
+        if($formart == 'xml')
+            self::$response = $this->xmlToArray($response);
     } 
 
-    private static function curlClose()
+    public function delete()
     {
-        curl_close(self::$curl);
+
+    }
+    
+    private function xmlToArray($xml){
+        libxml_disable_entity_loader(true);
+        return json_decode(json_encode(simplexml_load_string($xml, 'SimpleXMLElement', LIBXML_NOCDATA)), true);        
     }
 
-    public static function post()
+    private function curlInit()
     {
-        self::curlInit();
-        curl_setopt(self::$curl, CURLOPT_POSTFIELDS, self::$param);
-        $response = curl_exec(self::$curl);
-        self::curlClose();
-        return response;
-    }
+        $this->curl = curl_init();
+        curl_setopt($this->curl, CURLOPT_URL, $this->initParam['url']);
+        curl_setopt($this->curl, CURLOPT_HEADER, 0);
+        curl_setopt($this->curl, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($this->curl, CURLOPT_REFERER, '');
+        curl_setopt($this->curl, CURLOPT_SSL_VERIFYPEER, 0);
+        curl_setopt($this->curl, CURLOPT_RETURNTRANSFER, 1);
+        if($this->initParam['method'] == 'post')
+            curl_setopt($this->curl, CURLOPT_POST, 1);
+    } 
 
-    public static function get()
+    private function curlClose()
     {
-        self::curlInit();
-        $response = curl_exec(self::$curl);
-        var_dump(curl_error(self::$curl));
-        self::curlClose();
-        return $response;
-    }
-
-    public static function delete()
-    {
-
+        curl_close($this->curl);
     }
 
     public function __destruct()
