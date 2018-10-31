@@ -6,16 +6,19 @@ use Zero\Response;
 
 class APIController extends Controller
 {
+    private $api;
+
     public function __construct() 
     {
         parent::__construct();
+        $this->api = new ApiModel();
     }
 
     public function getAccessTokenZero()
     {
-        $api = new ApiModel();
-        $accessToken = $api->getAccessToken();
-        $this->statusPrint(200,$accessToken);
+        
+        $response = $this->api->getAccessToken();
+        $this->statusPrint($response[0],$response[1]);
     }
 
     public function jsSdk()
@@ -38,12 +41,16 @@ class APIController extends Controller
         $timestamp = $request->getParam('timestamp');
         $signature = $request->getParam('signature');
         $tmp = [$timestamp,$nonce,WECHAT_TOKEN];
-        $api = new ApiModel();
-        $checkRes = $api->wechat($tmp,$signature);
+        $checkRes = $this->api->wechat($tmp,$signature);
         $response = new Response($echostr);
         if($checkRes){
             $response->send();
         }
         $this->statusPrint(1000,'wechat check failed!');
+    }
+
+    public function createMenuZero()
+    {
+        $this->api->createMenuWechat();
     }
 }

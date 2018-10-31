@@ -22,3 +22,4 @@ $route['/menu/delete'] = ['Menu', 'deleteMenu'];
 $route['/api/getaccesstoken'] = ['API', 'getAccessToken'];
 $route['/api/jsSdk'] = ['API', 'jsSdk'];
 $route['/api/wechat'] = ['API', 'wechat'];
+$route['/api/menu/create'] = ['API', 'createMenu'];

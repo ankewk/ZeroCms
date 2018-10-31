@@ -1,7 +1,5 @@
 <?php
-
 namespace Lib;
-use Zero\Cache;
 
 class ZeroWechat
 {
@@ -14,27 +12,21 @@ class ZeroWechat
     public function wechat($tmp,$signature)
     {
         $this->easyApi->init($tmp)->signature();
-        if(EasyApi::$response == $signature)
-            return true;
-        return false;
+        return EasyApi::$response;
     }
 
-    public function getAccessToken()
+    public function getAccessToken($appid,$secret)
     {
-        $url = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid='.WECHAT_APPID.'&secret='.WECHAT_TOKEN;
-        $this->easyApi->init(['url'=>$url])->checkDomain();
-        var_dump(EasyApi::$response);exit;
+        $url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={$appid}&secret={$secret}";
         $this->easyApi->init(['url'=>$url,'param'=>'','method'=>'get'])->get();
-        var_dump(EasyApi::$response->errcode);exit;
-        Cache::init('reids',7100);
-        Cache::set('access_token',$response->access_token);
-        $accessToken = Cache::get(access_token);
-        return $accessToken;
+        return EasyApi::$response;
     }
 
-    public function createMenu()
+    public function createMenu($data,$token)
     {
-
+        $url = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token={$token}";
+        $this->easyApi->init(['url'=>$url,'param'=>$data,'method'=>'get'])->json()->get();
+        return EasyApi::$response;
     }
 
 }
