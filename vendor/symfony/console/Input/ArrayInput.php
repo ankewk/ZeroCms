@@ -51,16 +51,20 @@ class ArrayInput extends Input
     /**
      * {@inheritdoc}
      */
-    public function hasParameterOption($values)
+    public function hasParameterOption($values, $onlyParams = false)
     {
         $values = (array) $values;
 
         foreach ($this->parameters as $k => $v) {
-            if (!is_int($k)) {
+            if (!\is_int($k)) {
                 $v = $k;
             }
 
-            if (in_array($v, $values)) {
+            if ($onlyParams && '--' === $v) {
+                return false;
+            }
+
+            if (\in_array($v, $values)) {
                 return true;
             }
         }
@@ -71,16 +75,20 @@ class ArrayInput extends Input
     /**
      * {@inheritdoc}
      */
-    public function getParameterOption($values, $default = false)
+    public function getParameterOption($values, $default = false, $onlyParams = false)
     {
         $values = (array) $values;
 
         foreach ($this->parameters as $k => $v) {
-            if (is_int($k)) {
-                if (in_array($v, $values)) {
+            if ($onlyParams && ('--' === $k || (\is_int($k) && '--' === $v))) {
+                return $default;
+            }
+
+            if (\is_int($k)) {
+                if (\in_array($v, $values)) {
                     return true;
                 }
-            } elseif (in_array($k, $values)) {
+            } elseif (\in_array($k, $values)) {
                 return $v;
             }
         }
@@ -98,7 +106,7 @@ class ArrayInput extends Input
         $params = array();
         foreach ($this->parameters as $param => $val) {
             if ($param && '-' === $param[0]) {
-                if (is_array($val)) {
+                if (\is_array($val)) {
                     foreach ($val as $v) {
                         $params[] = $param.('' != $v ? '='.$this->escapeToken($v) : '');
                     }
@@ -106,7 +114,7 @@ class ArrayInput extends Input
                     $params[] = $param.('' != $val ? '='.$this->escapeToken($val) : '');
                 }
             } else {
-                $params[] = is_array($val) ? implode(' ', array_map(array($this, 'escapeToken'), $val)) : $this->escapeToken($val);
+                $params[] = \is_array($val) ? implode(' ', array_map(array($this, 'escapeToken'), $val)) : $this->escapeToken($val);
             }
         }
 
@@ -119,6 +127,9 @@ class ArrayInput extends Input
     protected function parse()
     {
         foreach ($this->parameters as $key => $value) {
+            if ('--' === $key) {
+                return;
+            }
             if (0 === strpos($key, '--')) {
                 $this->addLongOption(substr($key, 2), $value);
             } elseif ('-' === $key[0]) {
@@ -168,7 +179,9 @@ class ArrayInput extends Input
                 throw new InvalidOptionException(sprintf('The "--%s" option requires a value.', $name));
             }
 
-            $value = $option->isValueOptional() ? $option->getDefault() : true;
+            if (!$option->isValueOptional()) {
+                $value = true;
+            }
         }
 
         $this->options[$name] = $value;

@@ -26,6 +26,7 @@ class ApplicationDescription
 
     private $application;
     private $namespace;
+    private $showHidden;
 
     /**
      * @var array
@@ -42,10 +43,16 @@ class ApplicationDescription
      */
     private $aliases;
 
-    public function __construct(Application $application, $namespace = null)
+    /**
+     * @param Application $application
+     * @param string|null $namespace
+     * @param bool        $showHidden
+     */
+    public function __construct(Application $application, $namespace = null, $showHidden = false)
     {
         $this->application = $application;
         $this->namespace = $namespace;
+        $this->showHidden = $showHidden;
     }
 
     /**
@@ -99,7 +106,7 @@ class ApplicationDescription
 
             /** @var Command $command */
             foreach ($commands as $name => $command) {
-                if (!$command->getName()) {
+                if (!$command->getName() || (!$this->showHidden && $command->isHidden())) {
                     continue;
                 }
 
