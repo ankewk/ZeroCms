@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+<?php
+include('easyorm.php');

@@ -1,17 +1,41 @@
-#!/usr/bin/env sh
-
-dir=$(d=${0%[/\\]*}; cd "$d"; cd '../doctrine/orm/bin' && pwd)
-
-# See if we are running in Cygwin by checking for cygpath program
-if command -v 'cygpath' >/dev/null 2>&1; then
-	# Cygwin paths start with /cygdrive/ which will break windows PHP,
-	# so we need to translate the dir path to windows format. However
-	# we could be using cygwin PHP which does not require this, so we
-	# test if the path to PHP starts with /cygdrive/ rather than /usr/bin
-	if [[ $(which php) == /cygdrive/* ]]; then
-		dir=$(cygpath -m "$dir");
-	fi
-fi
-
-dir=$(echo $dir | sed 's/ /\ /g')
-"${dir}/doctrine.php" "$@"
+<?php
+	declare(strict_types=1);
+	use Symfony\Component\Console\Helper\HelperSet;
+	use Doctrine\ORM\Tools\Console\ConsoleRunner;
+	$autoloadFiles = [
+		__DIR__ . '/../vendor/autoload.php',
+		__DIR__ . '/../../../autoload.php'
+	];
+	foreach ($autoloadFiles as $autoloadFile) {
+		if (file_exists($autoloadFile)) {
+			require_once $autoloadFile;
+			break;
+		}
+	}
+	$directories = [getcwd(), getcwd() . DIRECTORY_SEPARATOR . 'config'];
+	$configFile = null;
+	foreach ($directories as $directory) {
+		$configFile = $directory . DIRECTORY_SEPARATOR . 'cli-config.php';
+		if (file_exists($configFile)) {
+			break;
+		}
+	}
+	if ( ! file_exists($configFile)) {
+		ConsoleRunner::printCliConfigTemplate();
+		exit(1);
+	}
+	if ( ! is_readable($configFile)) {
+		echo 'Configuration file [' . $configFile . '] does not have read permission.' . "\n";
+		exit(1);
+	}
+	$commands = [];
+	$helperSet = require $configFile;
+	if ( ! ($helperSet instanceof HelperSet)) {
+		foreach ($GLOBALS as $helperSetCandidate) {
+			if ($helperSetCandidate instanceof HelperSet) {
+				$helperSet = $helperSetCandidate;
+				break;
+			}
+		}
+	}
+	ConsoleRunner::run($helperSet, $commands);

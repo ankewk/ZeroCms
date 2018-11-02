@@ -1,10 +1,2 @@
 <?php
-use Doctrine\ORM\Tools\Console\ConsoleRunner;
-
-// replace with file to your own project bootstrap
-require_once 'vendor/symfony/polyfill-mbstring/bootstrap.php';
-
-// replace with mechanism to retrieve EntityManager in your app
-$entityManager = GetEntityManager();
-
-return ConsoleRunner::createHelperSet($entityManager);
+require_once 'vendor/doctrine/orm/bin/doctrine.php';
