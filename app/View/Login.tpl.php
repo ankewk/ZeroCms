@@ -46,7 +46,7 @@
     <script src="app/View/public/js/jquery-1.11.0.js"></script>
     <script src="app/View/public/js/bootstrap.min.js"></script>
     <script src="app/View/public/js/plugins/metisMenu/metisMenu.min.js"></script>
-    <script src="app/View/public/js/user.js"></script>
     <script src="app/View/public/js/sb-admin-2.js"></script>
+    <script src="app/View/public/js/user.js"></script>
 </body>
 </html>

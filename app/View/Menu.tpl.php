@@ -189,10 +189,11 @@
                     "content" : $(".menu-content").val()
                 },
                 success:function(data) {
-                    alert(data.msg);
                     if(data.status == 10) {
+                        ShowSuccess(data.msg);
                         window.location.href = '/menu';
                     } else {
+                        ShowFailure(data.msg);
                         location.reload() 
                     }
                 }
