@@ -73,6 +73,16 @@
                                     <option value=<?php echo $v['id'];?>><?php echo $v['name'];?></option>
                                 <?php } ?>
                                 </select>
+                                <label>菜单类型</label>
+                                <select class="form-control menu-type">
+                                    <option value="click">点击</option>
+                                    <option value="location_select">发送位置</option>
+                                    <option value="view">链接</option>
+                                    <option value="pic_sysphoto">系统拍照发图</option>
+                                    <option value="pic_photo_or_album">拍照或者相册发图</option>
+                                </select>
+                                <lable>内容</lable>
+                                <input type="text" class="form-control menu-content">
                                 <button id="menu_post" class="btn btn-primary">创建</button>
                             </div>
                             <!-- create menu end -->
@@ -89,6 +99,16 @@
                                     <option value=<?php echo $v['id'];?>><?php echo $v['name'];?></option>
                                 <?php } ?>
                                 </select>
+                                <label>菜单类型</label>
+                                <select class="form-control menu-type">
+                                    <option value="click">点击</option>
+                                    <option value="location_select">发送位置</option>
+                                    <option value="view">链接</option>
+                                    <option value="pic_sysphoto">系统拍照发图</option>
+                                    <option value="pic_photo_or_album">拍照或者相册发图</option>
+                                </select>
+                                <lable>内容</lable>
+                                <input type="text" class="form-control menu-content">
                                 <button id="menu_update_post" class="btn btn-primary">修改</button>
                             </div>
                             <!-- create menu end -->
@@ -164,7 +184,9 @@
                 url: '/menu/create', 
                 data: {
                     "name" : $(".menu-name").val(),
-                    "pid" : $(".menu-pid").val()
+                    "pid" : $(".menu-pid").val(),
+                    "type" : $(".menu-type").val(),
+                    "content" : $(".menu-content").val()
                 },
                 success:function(data) {
                     alert(data.msg);
@@ -185,7 +207,9 @@
                 data: {
                     "id" : $(this).val(),
                     "name" : $(".menu-update-name").val(),
-                    "pid" : $(".menu-pid").val()
+                    "pid" : $(".menu-pid").val(),
+                    "type" : $(".menu-type").val(),
+                    "content" : $(".menu-content").val()
                 },
                 success:function(data) {
                     alert(data.msg);

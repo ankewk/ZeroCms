@@ -1,0 +1,14 @@
+{
+    "table":"zero_menu",
+    "opration":"alter",
+    "feilds":[
+        {
+            "name":"content",
+            "type":"varchar",
+            "length":"255",
+            "default":"null",
+            "comment":"菜单url",
+            "after":"type"
+        }
+    ]
+}

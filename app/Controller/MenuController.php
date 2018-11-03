@@ -17,14 +17,18 @@ class MenuController extends Controller
     {      
         $param = [
             'name' => 'string',
-            'pid' => 'string'
+            'pid' => 'string',
+            'type' => 'string',
+            'content' => 'string'
         ];
         $request = $this->Request();
         $request->validation($param);
         $name = $request->getParam('name');
         $pid = $request->getParam('pid');
+        $type = $request->getParam('type');
+        $content = $request->getParam('content');
         $now = NOW_TIME;
-        $menuVal = "'{$name}', {$pid}, '{$now}', '{$now}'";
+        $menuVal = "'{$name}', {$pid}, '{$type}', '{$content}', '{$now}', '{$now}'";
         $lastId = $this->menuModel->createMenu($menuVal);
         if($lastId)
             $this->statusPrint(10, '菜单创建成功！');
@@ -36,14 +40,18 @@ class MenuController extends Controller
         $param = [
             'id' => 'string',
             'name' => 'string',
-            'pid' => 'string'
+            'pid' => 'string',
+            'type' => 'string',
+            'content' => 'string'
         ];
         $request = $this->Request();
         $request->validation($param);
         $menuId = $request->getParam('id');
         $name = $request->getParam('name');
         $pid = $request->getParam('pid');
-        $upval = "`name`='{$name}', `pid`={$pid}";
+        $type = $request->getParam('type');
+        $content = $request->getParam('content');
+        $upval = "`name`='{$name}', `pid`={$pid}, `type`='{$type}', `content`='{$content}' ";
         $where  = "`id`={$menuId}";
         $rs =  $this->menuModel->updateMenu($upval, $where);
         if($rs)

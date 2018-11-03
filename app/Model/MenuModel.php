@@ -18,7 +18,7 @@ class MenuModel extends Model
     // Create Menu 
     public function createMenu($value)
     {
-        $this->feild = '`name`, `pid`, `created`, `updated`';
+        $this->feild = '`name`, `pid`, `type`, `content`, `created`, `updated`';
         $this->value = $value;
         $lastId = $this->C();
         return $lastId;
@@ -39,8 +39,8 @@ class MenuModel extends Model
         $this->feild = '`id`,`name`,`wechat_status`';
         $this->where = '`pid`=0';
         $fatherMenuList = $this->R();
-        $this->feild = '`id`,`pid`,`name`,`wechat_status`';
-        $this->where = 1;
+        $this->feild = '`id`,`pid`,`name`, `type`, `content`, `wechat_status`';
+        $this->where = ' `pid` != 0';
         $menuList = $this->R();
         $list = ['father_list' => $fatherMenuList, 'list' => $menuList];
         return $list;

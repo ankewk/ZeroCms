@@ -7,7 +7,6 @@ $(".user-login").bind("click", function() {
             "password" : $(".login-password").val()
         },
         success:function(data) {
-            alert(data.msg);
             if(data.status == 10) {
                 window.location.href = '/';
             } else {
